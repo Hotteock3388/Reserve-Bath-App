@@ -6,13 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ListView
+        android:id="@+id/listView_PreviousSettings"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="155dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:context="com.example.myapplicationtest.MainActivity">
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            app:menu_colorNormal="@color/colorMainBlue">
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_ShowPreviousSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginRight="15sp"
+                android:layout_marginBottom="160dp"
+                android:src="@drawable/ic_alarm_24dp"
+                android:visibility="invisible"
+                app:backgroundTint="#ffffff"
+                app:elevation="6dp"
+                app:fab_colorNormal="@color/colorWhite"
+                app:fab_label="최근 설정 불러오기" />
+
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_NewReserve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginRight="15sp"
+                android:layout_marginBottom="90dp"
+                android:src="@drawable/ic_alarm_24dp"
+                android:visibility="invisible"
+                app:backgroundTint="#ffffff"
+                app:elevation="6dp"
+                app:fab_colorNormal="@color/colorWhite"
+                app:fab_label="새로 예약하기" />
+
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
