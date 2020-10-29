@@ -10,13 +10,13 @@ import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_new_reserve.*
+import kotlinx.android.synthetic.main.alertdatepickerform.*
 import java.util.*
 
 class NewReserveActivity : AppCompatActivity() {
 
     //var reserveData : ReserveData? = null
-    lateinit var selectData: SelectData
-    var sDay = 0
+    var selectData = SelectData("", 0, "", true)
 
 
     lateinit var btnArr : Array<Button>;
@@ -41,8 +41,13 @@ class NewReserveActivity : AppCompatActivity() {
                 }
             }
         }
-        btn_SelectDate.setOnClickListener {
-            createDatePicker()
+        btn_SelectDayOrDate.setOnClickListener {
+            if(selectData.ifDay) {
+                createDatePicker()
+            }
+            else{
+                daySelectMode()
+            }
         }
 
 
@@ -53,41 +58,75 @@ class NewReserveActivity : AppCompatActivity() {
         //오늘의 요일 구하기
         var toDay =(Calendar.getInstance().get(Calendar.DAY_OF_WEEK))
 
-        //숫자의 규칙성을 찾아 월요일 = 0 ..일요일 = 6으로 sDay 변수에 대입
-        sDay = if(toDay == 1) 6 else (toDay) -2
+        //숫자의 규칙성을 찾아 월요일 = 0 ..일요일 = 6으로 selectData.day 변수에 대입
+        selectData.day = if(toDay == 1) 6 else (toDay) -2
 
         //오늘을 선택
-        dayOn(sDay)
+        selectDayOn(selectData.day)
     }
 
     private fun dayChange(clickedDay: Int) {
-        dayOff()
-        dayOn(clickedDay)
+        selectDayOff()
+        selectDayOn(clickedDay)
     }
 
-    private fun dayOff() {
-        btnArr.get(sDay).setBackgroundResource(R.drawable.btn_unselected_day)
-        btnArr.get(sDay).setTextColor(resources.getColor(R.color.colorButtonGray))
+    private fun selectDayOff() {
+        btnArr.get(selectData.day).setBackgroundResource(R.drawable.btn_unselected_day)
+        btnArr.get(selectData.day).setTextColor(resources.getColor(R.color.colorButtonGray))
     }
 
-    private fun dayOn(clickedDay: Int) {
+    private fun selectDayOn(clickedDay: Int) {
         btnArr.get(clickedDay).setBackgroundResource(R.drawable.btn_selected_day)
         btnArr.get(clickedDay).setTextColor(resources.getColor(R.color.colorBlack))
-        sDay = clickedDay
+        selectData.day = clickedDay
     }
 
     private fun createDatePicker() {
         val inflater: LayoutInflater = applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val myView: View = inflater.inflate(R.layout.alertdatepickerform, null)
-
+        val datePicker = myView.findViewById<DatePicker>(R.id.datePicker)
+        var tempMonth = ""
+        var tempDay = ""
+        var text_SelectDate = ""
+        var selectDate = ""
         val dlg =
             AlertDialog.Builder(this@NewReserveActivity)
         dlg.setCancelable(false)
             .setView(myView)
             .setPositiveButton("확인") { dialog, which ->
+                text_SelectDate += "${datePicker.year} 년 ${(datePicker.month + 1)}월 ${datePicker.dayOfMonth}일 목욕예약"
+
+                text_ReservingDay.text = text_SelectDate
+
+                selectData.date = "${datePicker.year}.${String.format("%02d", (datePicker.month + 1))}.${String.format("%02d", datePicker.dayOfMonth)}"
+
+                Log.d("TestLog", "selectDate = ${selectDate}")
+                Log.d("TestLog", "date = ${selectData.date}")
+                dateSelectMode()
             }
             .setNegativeButton("취소", null)
             .show()
+    }
+
+    private fun daySelectMode(){
+        selectData.ifDay = true
+        text_ShowDayOrDate.text = "요일 선택"
+        btn_SelectDayOrDate.text = "날짜 선택"
+        for (i in 0..6) {
+            btnArr[i].visibility = View.VISIBLE
+        }
+        text_ReservingDay.visibility = View.GONE
+    }
+
+    private fun dateSelectMode(){
+        selectData.ifDay = false
+        text_ShowDayOrDate.text = "날짜 선택"
+        btn_SelectDayOrDate.text = "요일 선택"
+
+        for (i in 0..6) {
+            btnArr[i].visibility = View.GONE
+        }
+        text_ReservingDay.visibility = View.VISIBLE
     }
 
 }

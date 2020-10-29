@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
         <DatePicker
-            android:id="@+id/formDatePicker"
+            android:id="@+id/datePicker"
             style="@style/DatePickerTheme"
             android:calendarViewShown="false"
             android:layout_gravity="center"
