@@ -24,15 +24,34 @@ class NewReserveActivity : AppCompatActivity() {
 
     private fun buttonInit(){
         btnArr = arrayOf(btn_Day1,btn_Day2,btn_Day3,btn_Day4,btn_Day5,btn_Day6,btn_Day7)
-        
+
         for(i in 0..6){
             btnArr[i].setOnClickListener {
                 for(j in 0..6) {
-                    if (it.id == btnArr[j].id) { Log.d("TestLog", "j = ${j}") }
+                    if (it.id == btnArr[j].id) {
+                        Log.d("TestLog", "j = ${j}")
+                        dayChange(j)
+                    }
                 }
             }
 
         }
+    }
+
+    private fun dayChange(clickedDay: Int) {
+        dayOff()
+        dayOn(clickedDay)
+
+    }
+
+    private fun dayOff() {
+        btnArr.get(sDay).setBackgroundResource(R.drawable.btn_unselected_day)
+        btnArr.get(sDay).setTextColor(resources.getColor(R.color.colorButtonGray))
+    }
+    private fun dayOn(clickedDay: Int) {
+        btnArr.get(clickedDay).setBackgroundResource(R.drawable.btn_selected_day)
+        btnArr.get(clickedDay).setTextColor(resources.getColor(R.color.colorBlack))
+        sDay = clickedDay
     }
 
 }
