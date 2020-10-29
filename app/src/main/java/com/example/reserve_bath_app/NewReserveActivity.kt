@@ -5,6 +5,8 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_new_reserve.*
+import java.util.*
+import java.util.Calendar.DAY_OF_WEEK
 
 class NewReserveActivity : AppCompatActivity() {
 
@@ -34,8 +36,20 @@ class NewReserveActivity : AppCompatActivity() {
                     }
                 }
             }
-
         }
+
+        todayButtonOn()
+    }
+
+    private fun todayButtonOn(){
+        //오늘의 요일 구하기
+        var toDay =(Calendar.getInstance().get(Calendar.DAY_OF_WEEK))
+
+        //숫자의 규칙성을 찾아 월요일 = 0 ..일요일 = 6으로 sDay 변수에 대입
+        sDay = if(toDay == 1) 6 else (toDay) -2
+
+        //오늘을 선택
+        dayOn(sDay)
     }
 
     private fun dayChange(clickedDay: Int) {
@@ -43,7 +57,6 @@ class NewReserveActivity : AppCompatActivity() {
         dayOn(clickedDay)
 
     }
-
     private fun dayOff() {
         btnArr.get(sDay).setBackgroundResource(R.drawable.btn_unselected_day)
         btnArr.get(sDay).setTextColor(resources.getColor(R.color.colorButtonGray))
