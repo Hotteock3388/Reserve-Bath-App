@@ -8,4 +8,5 @@
     <color name="colorButtonGray">#d7d7d7</color>
     <color name="colorMainBlue">#b8d7ff</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorPrimaryText">#000000</color>
 </resources>

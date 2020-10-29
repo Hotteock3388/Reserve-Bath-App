@@ -1,12 +1,16 @@
 package com.example.reserve_bath_app
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
+import android.widget.DatePicker
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_new_reserve.*
 import java.util.*
-import java.util.Calendar.DAY_OF_WEEK
 
 class NewReserveActivity : AppCompatActivity() {
 
@@ -37,6 +41,10 @@ class NewReserveActivity : AppCompatActivity() {
                 }
             }
         }
+        btn_SelectDate.setOnClickListener {
+            createDatePicker()
+        }
+
 
         todayButtonOn()
     }
@@ -55,16 +63,31 @@ class NewReserveActivity : AppCompatActivity() {
     private fun dayChange(clickedDay: Int) {
         dayOff()
         dayOn(clickedDay)
-
     }
+
     private fun dayOff() {
         btnArr.get(sDay).setBackgroundResource(R.drawable.btn_unselected_day)
         btnArr.get(sDay).setTextColor(resources.getColor(R.color.colorButtonGray))
     }
+
     private fun dayOn(clickedDay: Int) {
         btnArr.get(clickedDay).setBackgroundResource(R.drawable.btn_selected_day)
         btnArr.get(clickedDay).setTextColor(resources.getColor(R.color.colorBlack))
         sDay = clickedDay
+    }
+
+    private fun createDatePicker() {
+        val inflater: LayoutInflater = applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val myView: View = inflater.inflate(R.layout.alertdatepickerform, null)
+
+        val dlg =
+            AlertDialog.Builder(this@NewReserveActivity)
+        dlg.setCancelable(false)
+            .setView(myView)
+            .setPositiveButton("확인") { dialog, which ->
+            }
+            .setNegativeButton("취소", null)
+            .show()
     }
 
 }

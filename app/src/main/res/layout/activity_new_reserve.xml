@@ -99,11 +99,11 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/btn_Repeat"
+                        android:id="@+id/btn_SelectDate"
                         android:layout_width="110dp"
                         android:layout_height="25dp"
                         android:background="@drawable/btn_corner_blue"
-                        android:text="날짜 선택"
+                        android:text="요일 선택"
                         android:textColor="@color/colorWhite"
                         android:textSize="15dp"
                         app:layout_constraintBottom_toBottomOf="parent"
