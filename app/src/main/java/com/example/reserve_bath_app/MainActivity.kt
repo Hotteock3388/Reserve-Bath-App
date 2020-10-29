@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fabSetting() {
         fab_NewReserve.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this@MainActivity, NewReserveActivity::class.java)
+            val intent = Intent(this, NewReserveActivity::class.java)
             intent.putExtra("Data", "")
             startActivity(intent)
             overridePendingTransition(R.anim.rightin_activity, R.anim.not_move_activity)
