@@ -1,6 +1,7 @@
 package com.example.reserve_bath_app
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,13 +11,12 @@ import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_new_reserve.*
-import kotlinx.android.synthetic.main.alertdatepickerform.*
 import java.util.*
 
 class NewReserveActivity : AppCompatActivity() {
 
     //var reserveData : ReserveData? = null
-    var selectData = SelectData("", 0, "", true)
+    var selectData = SelectData("", 0, "", 0,true)
 
 
     lateinit var btnArr : Array<Button>;
@@ -25,7 +25,7 @@ class NewReserveActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_reserve)
         buttonInit()
-
+        setCroller()
     }
 
     private fun buttonInit(){
@@ -49,7 +49,6 @@ class NewReserveActivity : AppCompatActivity() {
                 daySelectMode()
             }
         }
-
 
         todayButtonOn()
     }
@@ -85,22 +84,18 @@ class NewReserveActivity : AppCompatActivity() {
         val inflater: LayoutInflater = applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val myView: View = inflater.inflate(R.layout.alertdatepickerform, null)
         val datePicker = myView.findViewById<DatePicker>(R.id.datePicker)
-        var tempMonth = ""
-        var tempDay = ""
         var text_SelectDate = ""
-        var selectDate = ""
         val dlg =
             AlertDialog.Builder(this@NewReserveActivity)
         dlg.setCancelable(false)
             .setView(myView)
             .setPositiveButton("확인") { dialog, which ->
-                text_SelectDate += "${datePicker.year} 년 ${(datePicker.month + 1)}월 ${datePicker.dayOfMonth}일 목욕예약"
 
-                text_ReservingDay.text = text_SelectDate
+                text_ReservingDay.text = "${datePicker.year}년 ${(datePicker.month + 1)}월 ${datePicker.dayOfMonth}일 목욕예약"
+
 
                 selectData.date = "${datePicker.year}.${String.format("%02d", (datePicker.month + 1))}.${String.format("%02d", datePicker.dayOfMonth)}"
 
-                Log.d("TestLog", "selectDate = ${selectDate}")
                 Log.d("TestLog", "date = ${selectData.date}")
                 dateSelectMode()
             }
@@ -128,5 +123,26 @@ class NewReserveActivity : AppCompatActivity() {
         }
         text_ReservingDay.visibility = View.VISIBLE
     }
+    private fun setCroller() {
+        croller.setOnProgressChangedListener { progress ->
+            val temp = progress + 13
+            selectData.temp = temp
+            select_Temper.text = "$temp ºC"
+            croller.backCircleColor =
+            when(temp) {
+                14 -> Color.parseColor("#FF2196F3")
+                25 -> Color.parseColor("#FFA2CBEC")
+                38 -> Color.parseColor("#FFFF9800")
+                41 -> Color.parseColor("#FFF15321")
+                44 -> Color.parseColor("#FFF44336")
+                else -> croller.backCircleColor
+            }
+    }
+    }
+    private fun updateCroller(temp:Int,colorString:String){
+        select_Temper.setText("${temp}ºC")
+        croller.backCircleColor = Color.parseColor("colorString")
+    }
+
 
 }

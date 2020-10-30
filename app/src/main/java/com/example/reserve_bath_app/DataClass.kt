@@ -10,5 +10,6 @@ data class SelectData(
     var date: String,
     var day: Int = 0,
     var time: String,
+    var temp: Int,
     var ifDay: Boolean = true
 )
