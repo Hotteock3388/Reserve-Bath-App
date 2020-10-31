@@ -33,6 +33,14 @@ class NewReserveActivity : AppCompatActivity() {
         setContentView(R.layout.activity_new_reserve)
         buttonInit()
         setCroller()
+        setText_leftTime()
+
+        timePicker.setOnTimeChangedListener { view, hourOfDay, minute ->
+            setText_leftTime()
+        }
+        btn_Reserve.setOnClickListener {
+            reserveBath()
+        }
 
     }
 
@@ -56,6 +64,8 @@ class NewReserveActivity : AppCompatActivity() {
         }
 
         todayButtonOn()
+        // 30분 후 목욕
+        timePicker.minute += 30
     }
 
     private fun todayButtonOn(){
@@ -137,7 +147,8 @@ class NewReserveActivity : AppCompatActivity() {
         var leftTimeMinutes: Long = 0
         val cal = Calendar.getInstance()
 
-
+        var nowHour = cal[Calendar.HOUR_OF_DAY]
+        var nowMinute = cal[Calendar.MINUTE]
 
         var leftDay = 0
         val leftHour: Long
@@ -156,15 +167,13 @@ class NewReserveActivity : AppCompatActivity() {
                 ++toDay
             }
             reserveData.date = LocalDate.now().plusDays(leftDay.toLong())
-
         }
         else{
             leftDay = ChronoUnit.DAYS.between(LocalDate.now(), selectData.selectLocalDate).toInt()
             reserveData.date = selectData.selectLocalDate
         }
 
-
-        leftTimeMinutes += leftDay * 60 * 24 + (timePicker.hour - cal[Calendar.HOUR_OF_DAY]) * 60 + timePicker.minute - cal[Calendar.MINUTE]
+        leftTimeMinutes += leftDay * 60 * 24 + (timePicker.hour - nowHour) * 60.toLong() + timePicker.minute - nowMinute.toLong()
 
         if(leftTimeMinutes < 0){
             if(selectData.ifDay){
@@ -181,12 +190,7 @@ class NewReserveActivity : AppCompatActivity() {
         leftHour = leftTimeMinutes / 60
         leftTimeMinutes %= 60
 
-        //text_LeftHour = java.lang.Long.toString(leftHour)
         leftMinute = leftTimeMinutes
-
-        //text_leftMinute = String.format("%02d", leftMinute)
-
-
 
         text_LeftTime.text = "${leftDay}일 ${leftHour}시간 ${leftMinute}분 후에 목욕을 시작합니다."
     }
@@ -207,6 +211,26 @@ class NewReserveActivity : AppCompatActivity() {
         }
     }
 
+    private fun reserveBath(){
+        //Log.d("TestLog", "date = ${reserveData.date}, time = ${timePicker.hour} : ${timePicker.minute}, temp = ${croller.progress + 13}")
+        if(selectData.selectPast)
+        {
+            Toast.makeText(this, "과거를 예약 할 순 없어요!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        var time = "${timePicker.hour}:${timePicker.minute}"
+        reserveData.time = time
+
+        var temp = croller.progress + 13
+        reserveData.temp = temp
+
+        Singleton.reserveDataList.add(reserveData)
+        finish()
+
+        for(i in 0 until Singleton.reserveDataList.size){
+            Log.d("TestLog", "dataList $i = ${Singleton.reserveDataList[i].date} - ${Singleton.reserveDataList[i].time} - ${Singleton.reserveDataList[i].temp} ")
+        }
+    }
 
 
 }
