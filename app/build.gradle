@@ -31,6 +31,10 @@ android {
 }
 
 dependencies {
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
+
     implementation 'com.race604.waveloading:library:1.1.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.github.karrel84:RellDatePicker:0.0.1'
