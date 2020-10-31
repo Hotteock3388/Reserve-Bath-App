@@ -1,5 +1,6 @@
 package com.example.reserve_bath_app
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
@@ -218,13 +219,12 @@ class NewReserveActivity : AppCompatActivity() {
             Toast.makeText(this, "과거를 예약 할 순 없어요!", Toast.LENGTH_SHORT).show()
             return
         }
-        var time = "${timePicker.hour}:${timePicker.minute}"
-        reserveData.time = time
+        reserveData.time = "${String.format("%02d", timePicker.hour)} : ${String.format("%02d", timePicker.minute)}"
 
-        var temp = croller.progress + 13
-        reserveData.temp = temp
+        reserveData.temp = croller.progress + 13
 
         Singleton.reserveDataList.add(reserveData)
+        setResult(Activity.RESULT_OK)
         finish()
 
         for(i in 0 until Singleton.reserveDataList.size){
