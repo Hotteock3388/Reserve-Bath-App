@@ -1,15 +1,16 @@
 package com.example.reserve_bath_app
 
+import java.time.LocalDate
+
 data class ReserveData(
-    var date: String,
-    var time: String,
-    var temp: Int
+    var date: LocalDate = LocalDate.now(),
+    var time: String = "",
+    var temp: Int = 0
     )
 
 data class SelectData(
-    var date: String,
+    var selectLocalDate: LocalDate = LocalDate.now(),
     var day: Int = 0,
-    var time: String,
-    var temp: Int,
-    var ifDay: Boolean = true
+    var ifDay: Boolean = true,
+    var selectPast : Boolean = false
 )

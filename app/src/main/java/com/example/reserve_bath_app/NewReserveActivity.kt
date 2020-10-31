@@ -3,29 +3,37 @@ package com.example.reserve_bath_app
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_new_reserve.*
+import kotlinx.android.synthetic.main.alertdatepickerform.*
+import java.time.Duration
+import java.time.LocalDate
+import java.time.Period
+import java.time.temporal.ChronoUnit
 import java.util.*
 
 class NewReserveActivity : AppCompatActivity() {
 
     //var reserveData : ReserveData? = null
-    var selectData = SelectData("", 0, "", 0,true)
+    var selectData = SelectData()
+    var reserveData = ReserveData()
 
-
-    lateinit var btnArr : Array<Button>;
+    lateinit var btnArr : Array<Button>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_reserve)
         buttonInit()
         setCroller()
+
     }
 
     private fun buttonInit(){
@@ -35,19 +43,16 @@ class NewReserveActivity : AppCompatActivity() {
             btnArr[i].setOnClickListener {
                 for(j in 0..6) {
                     if (it.id == btnArr[j].id) {
-                        Log.d("TestLog", "j = ${j}")
                         dayChange(j)
                     }
                 }
             }
         }
         btn_SelectDayOrDate.setOnClickListener {
-            if(selectData.ifDay) {
+            if(selectData.ifDay)
                 createDatePicker()
-            }
-            else{
+            else
                 daySelectMode()
-            }
         }
 
         todayButtonOn()
@@ -67,6 +72,7 @@ class NewReserveActivity : AppCompatActivity() {
     private fun dayChange(clickedDay: Int) {
         selectDayOff()
         selectDayOn(clickedDay)
+        setText_leftTime()
     }
 
     private fun selectDayOff() {
@@ -84,7 +90,6 @@ class NewReserveActivity : AppCompatActivity() {
         val inflater: LayoutInflater = applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val myView: View = inflater.inflate(R.layout.alertdatepickerform, null)
         val datePicker = myView.findViewById<DatePicker>(R.id.datePicker)
-        var text_SelectDate = ""
         val dlg =
             AlertDialog.Builder(this@NewReserveActivity)
         dlg.setCancelable(false)
@@ -94,10 +99,10 @@ class NewReserveActivity : AppCompatActivity() {
                 text_ReservingDay.text = "${datePicker.year}년 ${(datePicker.month + 1)}월 ${datePicker.dayOfMonth}일 목욕예약"
 
 
-                selectData.date = "${datePicker.year}.${String.format("%02d", (datePicker.month + 1))}.${String.format("%02d", datePicker.dayOfMonth)}"
+                selectData.selectLocalDate = LocalDate.of(datePicker.year, datePicker.month+1, datePicker.dayOfMonth)
 
-                Log.d("TestLog", "date = ${selectData.date}")
                 dateSelectMode()
+                setText_leftTime()
             }
             .setNegativeButton("취소", null)
             .show()
@@ -111,6 +116,7 @@ class NewReserveActivity : AppCompatActivity() {
             btnArr[i].visibility = View.VISIBLE
         }
         text_ReservingDay.visibility = View.GONE
+        setText_leftTime()
     }
 
     private fun dateSelectMode(){
@@ -122,11 +128,72 @@ class NewReserveActivity : AppCompatActivity() {
             btnArr[i].visibility = View.GONE
         }
         text_ReservingDay.visibility = View.VISIBLE
+        setText_leftTime()
     }
+
+
+    fun setText_leftTime() {
+        selectData.selectPast = false
+        var leftTimeMinutes: Long = 0
+        val cal = Calendar.getInstance()
+
+
+
+        var leftDay = 0
+        val leftHour: Long
+        val leftMinute: Long
+
+        var toDay =(cal.get(Calendar.DAY_OF_WEEK))
+        toDay = if(toDay == 1) 6 else (toDay) -2
+
+        if(selectData.ifDay){
+            while(toDay != selectData.day){
+                ++leftDay
+                if (toDay == 6) {
+                    toDay = 0
+                    continue
+                }
+                ++toDay
+            }
+            reserveData.date = LocalDate.now().plusDays(leftDay.toLong())
+
+        }
+        else{
+            leftDay = ChronoUnit.DAYS.between(LocalDate.now(), selectData.selectLocalDate).toInt()
+            reserveData.date = selectData.selectLocalDate
+        }
+
+
+        leftTimeMinutes += leftDay * 60 * 24 + (timePicker.hour - cal[Calendar.HOUR_OF_DAY]) * 60 + timePicker.minute - cal[Calendar.MINUTE]
+
+        if(leftTimeMinutes < 0){
+            if(selectData.ifDay){
+                leftTimeMinutes += 60 * 24 * 7
+                reserveData.date = LocalDate.now().plusDays(7)
+            }
+            else
+                selectData.selectPast = true
+        }
+
+        leftDay = (leftTimeMinutes / (60 * 24)).toInt()
+        leftTimeMinutes %= 60 * 24.toLong()
+
+        leftHour = leftTimeMinutes / 60
+        leftTimeMinutes %= 60
+
+        //text_LeftHour = java.lang.Long.toString(leftHour)
+        leftMinute = leftTimeMinutes
+
+        //text_leftMinute = String.format("%02d", leftMinute)
+
+
+
+        text_LeftTime.text = "${leftDay}일 ${leftHour}시간 ${leftMinute}분 후에 목욕을 시작합니다."
+    }
+
     private fun setCroller() {
         croller.setOnProgressChangedListener { progress ->
             val temp = progress + 13
-            selectData.temp = temp
             select_Temper.text = "$temp ºC"
             croller.backCircleColor =
             when(temp) {
@@ -137,12 +204,9 @@ class NewReserveActivity : AppCompatActivity() {
                 44 -> Color.parseColor("#FFF44336")
                 else -> croller.backCircleColor
             }
+        }
     }
-    }
-    private fun updateCroller(temp:Int,colorString:String){
-        select_Temper.setText("${temp}ºC")
-        croller.backCircleColor = Color.parseColor("colorString")
-    }
+
 
 
 }
