@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_AppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="몽글몽글"
+        android:textSize="38dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185" />
+
+    <TextView
+        android:id="@+id/text_LeftTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7시간 22분"
+        android:textSize="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_AppName" />
+
+    <TextView
+        android:id="@+id/text_viewPagerItem2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="후에 동작해요"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_LeftTime" />
+
+
+
+    <TextView
+        android:id="@+id/text_AppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="몽글몽글"
+        android:textSize="38dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185" />
+
+    <TextView
+        android:id="@+id/text_LeftTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7시간 22분"
+        android:textSize="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_AppName" />
+
+    <TextView
+        android:id="@+id/text_viewPagerItem2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="후에 동작해요"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_LeftTime" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

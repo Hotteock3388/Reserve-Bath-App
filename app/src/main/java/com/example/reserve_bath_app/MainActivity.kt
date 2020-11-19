@@ -49,6 +49,10 @@ class MainActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.rightin_activity, R.anim.not_move_activity)
         }
 
+        fab_ShowPreviousSettings.setOnClickListener {
+            startActivityForResult(Intent(this, ReserveStatusActivity::class.java), 100)
+            overridePendingTransition(R.anim.rightin_activity, R.anim.not_move_activity)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
