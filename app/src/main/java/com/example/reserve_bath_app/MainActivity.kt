@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addReserveDatas() {
-        Singleton.reserveDataList.add(ReserveData(LocalDate.now(),"11", "30", 16))
-        Singleton.reserveDataList.add(ReserveData(LocalDate.now(),"11", "30", 16))
-        Singleton.reserveDataList.add(ReserveData(LocalDate.now(),"11", "30", 16))
+        Singleton.reserveDataList.add(ReserveData(LocalDate.now().plusDays(1),"06", "06", 10))
+        Singleton.reserveDataList.add(ReserveData(LocalDate.now().plusDays(6),"12", "11", 20))
+        Singleton.reserveDataList.add(ReserveData(LocalDate.now().plusDays(11),"16", "30", 30))
     }
 
     private fun RecyclerViewInit() {

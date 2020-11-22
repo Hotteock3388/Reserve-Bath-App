@@ -53,7 +53,7 @@
         app:layout_constraintVertical_bias="0.65" />
 
     <TextView
-        android:id="@+id/viewPagerItem_ReserveDay"
+        android:id="@+id/viewPagerItem_ReserveDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="12월 25일 수요일"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_ReserveDay" />
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_ReserveDate" />
 
     <TextView
         android:id="@+id/viewPagerItem_MorningOrAfternoon"
