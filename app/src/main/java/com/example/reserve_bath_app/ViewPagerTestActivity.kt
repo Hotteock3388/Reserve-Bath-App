@@ -10,6 +10,8 @@ class ViewPagerTestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_view_pager_test)
 
 
-        viewPagerTest.adapter
+        viewPagerTest.adapter = ViewPagerAdapter(applicationContext)
+
+
     }
 }

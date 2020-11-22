@@ -3,10 +3,10 @@ package com.example.reserve_bath_app
 import java.time.LocalDate
 
 data class ReserveData(
-    var date : LocalDate,
-    var hour : String,
-    var minute : String,
-    var temp : Int
+    var date : LocalDate = LocalDate.now(),
+    var hour : String = "",
+    var minute : String = "",
+    var temp : Int = 0
     )
 
 data class SelectData(

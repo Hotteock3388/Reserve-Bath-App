@@ -7,6 +7,7 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +19,13 @@ class MainActivity : AppCompatActivity() {
 
         fabInit()
         RecyclerViewInit()
+        addReserveDatas()
+    }
 
+    private fun addReserveDatas() {
+        Singleton.reserveDataList.add(ReserveData(LocalDate.now(),"11", "30", 16))
+        Singleton.reserveDataList.add(ReserveData(LocalDate.now(),"11", "30", 16))
+        Singleton.reserveDataList.add(ReserveData(LocalDate.now(),"11", "30", 16))
     }
 
     private fun RecyclerViewInit() {
@@ -50,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         fab_ShowPreviousSettings.setOnClickListener {
-            startActivityForResult(Intent(this, ReserveStatusActivity::class.java), 100)
+            startActivityForResult(Intent(this, ViewPagerTestActivity::class.java), 100)
             overridePendingTransition(R.anim.rightin_activity, R.anim.not_move_activity)
         }
     }

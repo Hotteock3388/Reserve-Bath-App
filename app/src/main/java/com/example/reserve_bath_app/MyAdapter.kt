@@ -32,9 +32,9 @@ class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val textViewTemper = itemView.findViewById<TextView>(R.id.textView_Temper)
     //View와 데이터를 연결시키는 함수
     fun bind(reserveData: ReserveData) {
-        //Glide 라이브러리를 사용해서 외부 링크를 ImageView에 넣을 수 있음
+
         textViewdate.text = reserveData.date.toString()
-        textViewTime.text = reserveData.time
+        textViewTime.text = "${reserveData.hour} : ${reserveData.minute}"
         textViewTemper.text = reserveData.temp.toString()
     }
 }

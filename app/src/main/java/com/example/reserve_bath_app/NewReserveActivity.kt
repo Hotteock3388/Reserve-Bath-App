@@ -24,8 +24,8 @@ import java.util.*
 class NewReserveActivity : AppCompatActivity() {
 
     //var reserveData : ReserveData? = null
-    var selectData = SelectData()
-    var reserveData = ReserveData()
+    private var selectData = SelectData()
+    private var reserveData = ReserveData()
 
     lateinit var btnArr : Array<Button>
 
@@ -219,8 +219,8 @@ class NewReserveActivity : AppCompatActivity() {
             Toast.makeText(this, "과거를 예약 할 순 없어요!", Toast.LENGTH_SHORT).show()
             return
         }
-        reserveData.time = "${String.format("%02d", timePicker.hour)} : ${String.format("%02d", timePicker.minute)}"
-
+        reserveData.hour = "${String.format("%02d", timePicker.hour)}"
+        reserveData.minute = "${String.format("%02d", timePicker.minute)}"
         reserveData.temp = croller.progress + 13
 
         Singleton.reserveDataList.add(reserveData)
@@ -228,7 +228,7 @@ class NewReserveActivity : AppCompatActivity() {
         finish()
 
         for(i in 0 until Singleton.reserveDataList.size){
-            Log.d("TestLog", "dataList $i = ${Singleton.reserveDataList[i].date} - ${Singleton.reserveDataList[i].time} - ${Singleton.reserveDataList[i].temp} ")
+            Log.d("TestLog", "dataList $i = ${Singleton.reserveDataList[i].date} - ${Singleton.reserveDataList[i].hour} : ${Singleton.reserveDataList[i].minute} - ${Singleton.reserveDataList[i].temp} ")
         }
     }
 
