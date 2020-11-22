@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text_AppName"
+        android:id="@+id/viewPagerItem_Text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="몽글몽글"
@@ -19,59 +19,70 @@
         app:layout_constraintVertical_bias="0.185" />
 
     <TextView
-        android:id="@+id/text_LeftTime"
+        android:id="@+id/viewPagerItem_LeftTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="7시간 22분"
         android:textSize="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_AppName" />
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_Text1" />
 
     <TextView
-        android:id="@+id/text_viewPagerItem2"
+        android:id="@+id/viewPagerItem_Text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="후에 동작해요"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_LeftTime" />
-
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_LeftTime" />
 
 
     <TextView
-        android:id="@+id/text_AppName"
+        android:id="@+id/viewPagerItem_Temper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="몽글몽글"
-        android:textSize="38dp"
+        android:text="40°C"
+        android:textSize="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.185" />
+        app:layout_constraintVertical_bias="0.65" />
 
     <TextView
-        android:id="@+id/text_LeftTime"
+        android:id="@+id/viewPagerItem_ReserveDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="7시간 22분"
-        android:textSize="45dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_AppName" />
-
-    <TextView
-        android:id="@+id/text_viewPagerItem2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="후에 동작해요"
+        android:text="12월 25일 수요일"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_LeftTime" />
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_Temper" />
+
+    <TextView
+        android:id="@+id/viewPagerItem_reserveTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="06:06"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_ReserveDay" />
+
+    <TextView
+        android:id="@+id/viewPagerItem_MorningOrAfternoon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오전"
+        android:textSize="18dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPagerItem_reserveTime"
+        app:layout_constraintStart_toEndOf="@+id/viewPagerItem_reserveTime" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
