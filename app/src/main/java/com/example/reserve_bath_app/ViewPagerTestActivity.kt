@@ -11,7 +11,7 @@ class ViewPagerTestActivity : AppCompatActivity() {
 
 
         viewPagerTest.adapter = ViewPagerAdapter(applicationContext)
-
+        viewPagerTest.setPageTransformer(false, CustomPageTransformer())
 
     }
 }
