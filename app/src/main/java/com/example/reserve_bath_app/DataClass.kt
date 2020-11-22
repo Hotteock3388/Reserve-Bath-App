@@ -3,9 +3,10 @@ package com.example.reserve_bath_app
 import java.time.LocalDate
 
 data class ReserveData(
-    var date: LocalDate = LocalDate.now(),
-    var time: String = "",
-    var temp: Int = 0
+    var date : LocalDate,
+    var hour : String,
+    var minute : String,
+    var temp : Int
     )
 
 data class SelectData(
@@ -13,4 +14,6 @@ data class SelectData(
     var day: Int = 0,
     var ifDay: Boolean = true,
     var selectPast : Boolean = false
+
+
 )
