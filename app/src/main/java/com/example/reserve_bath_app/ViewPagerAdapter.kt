@@ -17,7 +17,7 @@ class ViewPagerAdapter(context: Context) : PagerAdapter() {
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.remov eView(`object` as View)
+        container.removeView(`object` as View)
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
