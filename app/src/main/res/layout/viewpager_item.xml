@@ -9,14 +9,14 @@
         android:id="@+id/viewPagerItem_Text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumsquare"
         android:text="몽글몽글"
-        android:textSize="38dp"
+        android:textSize="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.185" />
+        app:layout_constraintVertical_bias="0.076" />
 
     <TextView
         android:id="@+id/viewPagerItem_LeftTime"
@@ -24,6 +24,8 @@
         android:layout_height="wrap_content"
         android:text="7시간 22분"
         android:textSize="45dp"
+        android:fontFamily="@font/nanumsquare"
+        android:layout_marginTop="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_Text1" />
@@ -33,7 +35,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="후에 동작해요"
-        android:textSize="30dp"
+        android:textSize="35dp"
+        android:fontFamily="@font/nanumsquare"
+        android:layout_marginTop="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_LeftTime" />
@@ -44,7 +48,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="40°C"
-        android:textSize="60dp"
+        android:textSize="80dp"
+        android:fontFamily="@font/nanumsquare"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -56,9 +61,12 @@
         android:id="@+id/viewPagerItem_ReserveDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/nanumsquare"
         android:text="12월 25일 수요일"
-        android:textSize="30dp"
+        android:textSize="44dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_Temper" />
 
@@ -66,10 +74,12 @@
         android:id="@+id/viewPagerItem_reserveTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/nanumsquare"
         android:text="06:06"
-        android:textSize="30dp"
+        android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPagerItem_ReserveDate" />
 
@@ -78,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="오전"
-        android:textSize="18dp"
+        android:textSize="24dp"
         android:layout_marginLeft="3dp"
         android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/viewPagerItem_reserveTime"
