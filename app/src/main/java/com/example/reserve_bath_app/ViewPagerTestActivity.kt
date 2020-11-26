@@ -9,9 +9,5 @@ class ViewPagerTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pager_test)
 
-
-        viewPagerTest.adapter = ViewPagerAdapter(applicationContext)
-        viewPagerTest.setPageTransformer(false, CustomPageTransformer())
-
     }
 }
