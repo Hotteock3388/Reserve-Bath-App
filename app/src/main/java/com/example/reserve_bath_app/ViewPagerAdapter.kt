@@ -99,7 +99,14 @@ class ViewPagerAdapter(context: Context) : PagerAdapter() {
     }
 
     private fun setReserveDate(view: View, reserveCal: Calendar, position: Int) {
-        view.viewPagerItem_ReserveDate.text = "${reserveCal.get(Calendar.MONTH)}월 ${reserveCal.get(Calendar.DAY_OF_MONTH)}일 ${getDayOfWeek(position)}요일 "
+        var reserveMonth: String
+
+        reserveMonth = if(reserveCal.get(Calendar.MONTH) == 0){
+            "12월"
+        } else
+            "${reserveCal.get(Calendar.MONTH)}월"
+
+        view.viewPagerItem_ReserveDate.text = "$reserveMonth ${reserveCal.get(Calendar.DAY_OF_MONTH)}일 ${getDayOfWeek(position)}요일 "
     }
 
     fun setReserveTime(view: View, position: Int){
