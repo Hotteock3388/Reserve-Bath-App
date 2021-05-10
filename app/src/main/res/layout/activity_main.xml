@@ -10,6 +10,7 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,6 +20,8 @@
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="@color/colorWhite"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:src="@drawable/baseline_add_black_36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.875"

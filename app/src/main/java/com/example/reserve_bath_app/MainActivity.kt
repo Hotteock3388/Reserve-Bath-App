@@ -17,6 +17,11 @@ class MainActivity : AppCompatActivity() {
         viewPagerInit()
 
         addReserveDatas()
+
+        btn_newReserve.setOnClickListener {
+            startActivity(Intent(this, NewReserveActivity::class.java))
+        }
+
     }
 
     private fun addReserveDatas() {
