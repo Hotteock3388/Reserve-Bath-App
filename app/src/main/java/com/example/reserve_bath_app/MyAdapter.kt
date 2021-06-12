@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter(private val context: Context) : RecyclerView.Adapter<MyViewHolder>() {
+class MyAdapter(private val context: Context, var reserveDataList: ArrayList<ReserveData> ) : RecyclerView.Adapter<MyViewHolder>() {
     //var reserveDataList = mutableListOf<ReserveData>()
-    var reserveDataList = Singleton.reserveDataList
+    //var reserveDataList = Singleton.reserveDataList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.listitem_show_reservestatus,
             parent, false)
@@ -35,6 +35,5 @@ class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
         textViewdate.text = reserveData.date.toString()
         textViewTime.text = "${reserveData.hour} : ${reserveData.minute}"
-        textViewTemper.text = reserveData.temp.toString()
     }
 }

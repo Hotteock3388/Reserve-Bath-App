@@ -6,21 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".NewReserveActivity"
     android:orientation="vertical">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical" >
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_rectangle"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="350dp"
@@ -67,10 +68,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border_rectangle"
                 android:orientation="vertical"
-                android:background="@drawable/border_rectangle">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="352dp"
@@ -99,6 +102,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <View
                         style="@style/Divider"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,9 +115,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:orientation="horizontal"
                     android:paddingTop="10dp"
-                    android:paddingBottom="15dp"
-                    android:orientation="horizontal">
+                    android:paddingBottom="15dp">
 
                     <Button
                         android:id="@+id/btn_Day1"
@@ -121,8 +125,8 @@
                         android:layout_height="36dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/btn_unselected_day"
-                        android:textColor="@color/colorButtonGray"
-                        android:text="월" />
+                        android:text="월"
+                        android:textColor="@color/colorButtonGray" />
 
                     <Button
                         android:id="@+id/btn_Day2"
@@ -130,8 +134,8 @@
                         android:layout_height="36dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/btn_unselected_day"
-                        android:textColor="@color/colorButtonGray"
-                        android:text="화" />
+                        android:text="화"
+                        android:textColor="@color/colorButtonGray" />
 
                     <Button
                         android:id="@+id/btn_Day3"
@@ -140,7 +144,7 @@
                         android:layout_margin="5dp"
                         android:background="@drawable/btn_unselected_day"
                         android:text="수"
-                        android:textColor="@color/colorButtonGray"/>
+                        android:textColor="@color/colorButtonGray" />
 
                     <Button
                         android:id="@+id/btn_Day4"
@@ -148,8 +152,8 @@
                         android:layout_height="36dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/btn_unselected_day"
-                        android:textColor="@color/colorButtonGray"
-                        android:text="목" />
+                        android:text="목"
+                        android:textColor="@color/colorButtonGray" />
 
                     <Button
                         android:id="@+id/btn_Day5"
@@ -157,8 +161,8 @@
                         android:layout_height="36dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/btn_unselected_day"
-                        android:textColor="@color/colorButtonGray"
-                        android:text="금" />
+                        android:text="금"
+                        android:textColor="@color/colorButtonGray" />
 
                     <Button
                         android:id="@+id/btn_Day6"
@@ -191,64 +195,19 @@
 
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+            <Button
+                android:id="@+id/btn_Reserve"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/border_rectangle">
+                android:layout_height="wrap_content"
+                android:background="@color/colorMainBlue"
+                android:text="예약하기"
+                android:textColor="@color/colorWhite"
+                android:textSize="35dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <com.sdsmdg.harjot.crollerTest.Croller
-                    android:id="@+id/croller"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    app:back_circle_color="#EDEDED"
-                    app:indicator_color="#0B3C49"
-                    app:indicator_width="10"
-                    app:is_continuous="false"
-                    app:label="목욕물 온도 조절"
-                    app:label_color="#000000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.495"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:main_circle_color="#FFFFFF"
-                    app:max="32"
-                    app:progress_primary_circle_size="15"
-                    app:progress_primary_color="#808080"
-                    app:progress_primary_stroke_width="1000"
-                    app:progress_secondary_color="#EEEEEE"
-                    app:start_offset="45" />
-
-                <TextView
-                    android:id="@+id/select_Temper"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/croller"
-                    app:layout_constraintEnd_toEndOf="@+id/croller"
-                    app:layout_constraintStart_toStartOf="@+id/croller"
-                    app:layout_constraintTop_toTopOf="@+id/croller" />
-
-                <Button
-                    android:id="@+id/btn_Reserve"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:background="@color/colorMainBlue"
-                    android:text="예약하기"
-                    android:textSize="35dp"
-                    android:textColor="@color/colorWhite"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/croller" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

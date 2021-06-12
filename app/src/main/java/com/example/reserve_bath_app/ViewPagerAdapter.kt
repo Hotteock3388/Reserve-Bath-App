@@ -5,15 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import com.example.reserve_bath_app.Singleton.reserveDataList
-import kotlinx.android.synthetic.main.activity_new_reserve.*
 import kotlinx.android.synthetic.main.viewpager_item.view.*
-import java.nio.file.attribute.PosixFileAttributeView
 import java.time.DayOfWeek
 import java.util.*
 
 
-class ViewPagerAdapter(context: Context) : PagerAdapter() {
+class ViewPagerAdapter(context: Context, var reserveDataList: ArrayList<ReserveData>) : PagerAdapter() {
+
     private var context = context
     private lateinit var layoutInflater: LayoutInflater
 
@@ -60,16 +58,14 @@ class ViewPagerAdapter(context: Context) : PagerAdapter() {
         paramCalendar.set(Calendar.HOUR_OF_DAY, reserveDataList[paramInt].hour.toInt())
         paramCalendar.set(Calendar.MINUTE,reserveDataList[paramInt].minute.toInt())
     }
+
     private fun setTextViewsText(view: View, reserveCal: Calendar, position: Int) {
-
-
-        view.viewPagerItem_Temper.text = "${reserveDataList[position].temp}°C"
 
         initReserveCal(reserveCal, position)
 
         setReserveDate(view, reserveCal, position)
 
-        setReserveTime(view, position)
+        setReserveTimeText(view, position)
 
         setLeftTime(view, position, reserveCal)
     }
@@ -109,7 +105,7 @@ class ViewPagerAdapter(context: Context) : PagerAdapter() {
         view.viewPagerItem_ReserveDate.text = "$reserveMonth ${reserveCal.get(Calendar.DAY_OF_MONTH)}일 ${getDayOfWeek(position)}요일 "
     }
 
-    fun setReserveTime(view: View, position: Int){
+    private fun setReserveTimeText(view: View, position: Int){
         var reserveTimeString : String  = ""
         if(reserveDataList[position].hour.toInt() > 12) {
             view.viewPagerItem_MorningOrAfternoon.text = "오후"

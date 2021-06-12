@@ -5,8 +5,7 @@ import java.time.LocalDate
 data class ReserveData(
     var date : LocalDate = LocalDate.now(),
     var hour : String = "",
-    var minute : String = "",
-    var temp : Int = 0
+    var minute : String = ""
     )
 
 data class SelectData(

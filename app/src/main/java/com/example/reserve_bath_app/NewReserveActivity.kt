@@ -33,7 +33,6 @@ class NewReserveActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_reserve)
         buttonInit()
-        setCroller()
         setText_leftTime()
 
         timePicker.setOnTimeChangedListener { view, hourOfDay, minute ->
@@ -193,23 +192,7 @@ class NewReserveActivity : AppCompatActivity() {
 
         leftMinute = leftTimeMinutes
 
-        text_LeftTime.text = "${leftDay}일 ${leftHour}시간 ${leftMinute}분 후에 목욕을 시작합니다."
-    }
-
-    private fun setCroller() {
-        croller.setOnProgressChangedListener { progress ->
-            val temp = progress + 13
-            select_Temper.text = "$temp ºC"
-            croller.backCircleColor =
-            when(temp) {
-                14 -> Color.parseColor("#FF2196F3")
-                25 -> Color.parseColor("#FFA2CBEC")
-                38 -> Color.parseColor("#FFFF9800")
-                41 -> Color.parseColor("#FFF15321")
-                44 -> Color.parseColor("#FFF44336")
-                else -> croller.backCircleColor
-            }
-        }
+        text_LeftTime.text = "${leftDay}일 ${leftHour}시간 ${leftMinute}분 후에 알람이 울립니다."
     }
 
     private fun reserveBath(){
@@ -221,14 +204,13 @@ class NewReserveActivity : AppCompatActivity() {
         }
         reserveData.hour = "${String.format("%02d", timePicker.hour)}"
         reserveData.minute = "${String.format("%02d", timePicker.minute)}"
-        reserveData.temp = croller.progress + 13
 
         Singleton.reserveDataList.add(reserveData)
         setResult(Activity.RESULT_OK)
         finish()
 
         for(i in 0 until Singleton.reserveDataList.size){
-            Log.d("TestLog", "dataList $i = ${Singleton.reserveDataList[i].date} - ${Singleton.reserveDataList[i].hour} : ${Singleton.reserveDataList[i].minute} - ${Singleton.reserveDataList[i].temp} ")
+            Log.d("TestLog", "dataList $i = ${Singleton.reserveDataList[i].date} - ${Singleton.reserveDataList[i].hour} : ${Singleton.reserveDataList[i].minute}")
         }
     }
 

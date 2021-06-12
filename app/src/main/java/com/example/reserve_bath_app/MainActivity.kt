@@ -8,7 +8,7 @@ import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var myAdapter : MyAdapter
+    lateinit var adapter : ViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         viewPagerInit()
 
-        addReserveDatas()
+        addReserveData()
 
         btn_newReserve.setOnClickListener {
             startActivity(Intent(this, NewReserveActivity::class.java))
@@ -24,23 +24,26 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun addReserveDatas() {
-        Singleton.reserveDataList.add(ReserveData(LocalDate.now().plusDays(1),"06", "06", 10))
-        Singleton.reserveDataList.add(ReserveData(LocalDate.now().plusDays(6),"12", "11", 20))
-        Singleton.reserveDataList.add(ReserveData(LocalDate.now().plusDays(11),"16", "30", 30))
+    private fun addReserveData() {
+        Singleton.reserveDataList.add(ReserveData(LocalDate.now().plusDays(1),"06", "06"))
+        Singleton.reserveDataList.add(ReserveData(LocalDate.now().plusDays(6),"12", "11"))
+        Singleton.reserveDataList.add(ReserveData(LocalDate.now().plusDays(11),"16", "30"))
 
-        viewPager.adapter   ?.notifyDataSetChanged()
+        viewPager.adapter?.notifyDataSetChanged()
     }
 
     private fun viewPagerInit() {
-        viewPager.adapter = ViewPagerAdapter(applicationContext)
+        adapter = ViewPagerAdapter(applicationContext, Singleton.reserveDataList)
+        viewPager.adapter = adapter
         viewPager.setPageTransformer(false, CustomPageTransformer())
     }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        //myAdapter.notifyDataSetChanged()
+
+        viewPager.adapter?.notifyDataSetChanged()
+
     }
 
 }
